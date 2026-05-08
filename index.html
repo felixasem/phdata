@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Public Health AI Agent Dashboards</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="dashboard-shell">
+      <header class="masthead" aria-label="Dashboard overview">
+        <div>
+          <p class="eyebrow" id="observanceLabel">May Public Health Use Cases</p>
+          <h1 id="dashboardTitle">Public Health AI Agent Dashboards</h1>
+          <p class="lede" id="dashboardLede"></p>
+        </div>
+
+        <section class="status-panel" aria-label="Agent status">
+          <div>
+            <span class="status-dot"></span>
+            <strong>Agent active</strong>
+            <small>Last refresh: <span id="refreshTime">09:42</span></small>
+          </div>
+          <button id="refreshDashboard" type="button">Refresh Signals</button>
+        </section>
+      </header>
+
+      <section class="kpi-grid" aria-label="Current public health risk summary">
+        <article class="kpi">
+          <span id="kpiOneValue">0</span>
+          <small id="kpiOneLabel">Priority areas</small>
+        </article>
+        <article class="kpi">
+          <span id="kpiTwoValue">0</span>
+          <small id="kpiTwoLabel">Signal average</small>
+        </article>
+        <article class="kpi">
+          <span id="kpiThreeValue">0%</span>
+          <small id="kpiThreeLabel">Trend</small>
+        </article>
+        <article class="kpi">
+          <span id="kpiFourValue">0%</span>
+          <small id="kpiFourLabel">Access gap</small>
+        </article>
+      </section>
+
+      <section class="control-strip" aria-label="Dashboard controls">
+        <label>
+          Use case
+          <select id="useCaseSelect"></select>
+        </label>
+        <label>
+          Area
+          <select id="areaSelect"></select>
+        </label>
+        <label>
+          Time window
+          <select id="timeWindow">
+            <option value="24">Next 24 hours</option>
+            <option value="72" selected>Next 72 hours</option>
+            <option value="168">Next 7 days</option>
+          </select>
+        </label>
+        <label>
+          Intervention threshold
+          <input id="threshold" type="range" min="40" max="90" value="65" />
+          <span id="thresholdLabel">65 risk score</span>
+        </label>
+      </section>
+
+      <section class="main-grid">
+        <section class="risk-panel" aria-label="Area risk ranking">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Priority Areas</p>
+              <h2 id="riskHeading">Area Risk</h2>
+            </div>
+            <span id="selectedBadge">All neighborhoods</span>
+          </div>
+          <div class="risk-list" id="riskList"></div>
+        </section>
+
+        <section class="signals-panel" aria-label="Public health risk signals">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Signals</p>
+              <h2 id="signalTitle">Current Drivers</h2>
+            </div>
+          </div>
+          <div class="signal-grid" id="signalGrid"></div>
+          <div class="timeline" aria-label="Projected risk timeline">
+            <div class="timeline-head">
+              <strong>72-hour risk outlook</strong>
+              <small id="timelineNote">Based on environmental and access signals</small>
+            </div>
+            <div class="bars" id="riskBars"></div>
+          </div>
+        </section>
+
+        <section class="agent-panel" aria-label="AI agent recommended actions">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Agent Recommendations</p>
+              <h2>Suggested Actions</h2>
+            </div>
+          </div>
+          <div class="action-list" id="actionList"></div>
+        </section>
+
+        <section class="outreach-panel" aria-label="Outreach message drafts">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Outreach</p>
+              <h2>Draft Messages</h2>
+            </div>
+          </div>
+          <div class="message-tabs" role="tablist" aria-label="Message audience">
+            <button class="active" type="button" data-audience="families">Families</button>
+            <button type="button" data-audience="schools">Schools</button>
+            <button type="button" data-audience="clinics">Clinics</button>
+          </div>
+          <article class="message-draft">
+            <p id="messageDraft"></p>
+          </article>
+        </section>
+
+        <section class="briefing-panel" aria-label="Weekly briefing">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Briefing</p>
+              <h2>Public Health Summary</h2>
+            </div>
+          </div>
+          <p id="briefingText"></p>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
